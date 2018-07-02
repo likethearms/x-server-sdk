@@ -5,6 +5,9 @@ const core = require('../index')(process.env.CORE_URL);
 
 // Dummy request
 const request = () => ({
+  params: {
+    model: 'User',
+  },
   headers: {
     'app-authentication': appToken,
   },

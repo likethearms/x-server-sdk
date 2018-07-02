@@ -1,8 +1,8 @@
 const axios = require('axios');
 
 const configUrl = '/api/v1/configs';
-const modelUrl = '/api/v1/models/User';
-const configAndModelUrl = '/api/v1/configsandmodel/User';
+const modelUrl = '/api/v1/models';
+const configAndModelUrl = '/api/v1/configsandmodel';
 
 const errMissingCoreUrl = 'Missing coreurl';
 const errAccessDenied = 'Access denied!';
@@ -34,7 +34,7 @@ module.exports = (coreUrl) => {
     },
 
     getClientConfigAndModel: (req, res, next) => {
-      const url = `${coreUrl}${configAndModelUrl}`;
+      const url = `${coreUrl}${configAndModelUrl}/${req.params.model}`;
       const ax = getPreConfiguredAxios(req, res);
       return ax.get(url)
         .then(({ data }) => {
@@ -46,7 +46,7 @@ module.exports = (coreUrl) => {
     },
 
     getClientModel: (req, res, next) => {
-      const url = `${coreUrl}${modelUrl}`;
+      const url = `${coreUrl}${modelUrl}/${req.params.model}`;
       const ax = getPreConfiguredAxios(req, res);
       return ax.get(url)
         .then(({ data }) => {
